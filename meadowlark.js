@@ -24,6 +24,11 @@ var fortuneCookies = [
 ];
 */
 
+app.use(function(req, res, next) {
+	res.locals.showTestss = app.get('env') !== 'production' && 
+	req.query.test === '1';
+	next();
+});
 
 app.get('/', function(req, res) {
 	res.render('home');

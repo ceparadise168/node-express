@@ -40,6 +40,19 @@ cp node_modules/mocha/mocha.css public/vendor
 npm install --save-dev chai
 cp node_module/chai/chai.js public/vendor
 ```
+裝完了之後我們預期使用一個ＵＲｌ參數來啟動，大概長這樣子：
+http://localhose:3000?test=1
+為此我們要使用一些中介軟體在查詢字串中偵測test=1，他必須在任何想要使用的路由之前出現
+```
+app.use(function(req, res, next) {
+	res.locals.showTestss = app.get('env') !== 'production' && 
+	req.query.test === '1';
+	next();
+});
+```
+res.locals是要傳遞給view的context的一部分
+因此我們修改main.handlebars加入測試框架
+
 
 +跨頁測試 Zombie.js
 
