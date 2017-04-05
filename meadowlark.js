@@ -2,6 +2,8 @@ var express = require('express');
 
 var app = express();
 
+var fortune = require('./lib/fortune');
+
 // set up handlebars view engine
 //defaultLayout main
 var handlebars = require('express3-handlebars')
@@ -12,7 +14,7 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 
 app.use(express.static(__dirname + '/public'));
-
+/*
 var fortuneCookies = [
 	"Conquer your fears or they will conquer you.",
 	"Rivers need springs.",
@@ -20,14 +22,18 @@ var fortuneCookies = [
 	"You will have a pleasant surprise.",
 	"Whenever possible, keep it simple.",
 ];
+*/
+
 
 app.get('/', function(req, res) {
 	res.render('home');
 });
 app.get('/about', function(req,res){
-	var randomFortune = 
+	/*var randomFortune = 
 		fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];
 	res.render('about', { fortune: randomFortune });
+	*/
+	res.render('about',{fortune:fortune.getFortune()});
 });
 
 // 404 catch-all handler (middleware)
