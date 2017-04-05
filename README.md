@@ -52,6 +52,23 @@ app.use(function(req, res, next) {
 ```
 res.locals是要傳遞給view的context的一部分
 因此我們修改main.handlebars加入測試框架
+在head加入jquery來操作ＤＯＭ
+在body加入mocha chai 以及一個稱為global-test.js的全域測試
+```
+mkdir public/qa
+cd public/qa
+touch tests-global.js
+```
+```
+//tests-global.js
+suite('Global Tests', function(){
+	test('page has a valid title', function(){
+		assert(document.title && document.title.match(/\S/) && 
+			document.title.toUpperCase() !== 'TODO');
+	});
+});
+
+```
 
 
 +跨頁測試 Zombie.js
