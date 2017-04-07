@@ -16,6 +16,7 @@ npm install --save express3-handlebars view engine
  在主程式建立抽餅乾的function
 
  bulid main handlebars
+
  bulid sub handlebars
  
  接著把餅乾給抽出來模組化，讓架構更簡潔明瞭
@@ -39,6 +40,19 @@ git remote add origin https://github.com/ceparadise168/node-express.git
 #  About the QA
 
 +網頁測試 Ｍocha
+
++跨頁測試 Zombie.js
+
++邏輯測試
+
++Lint JSHint
+
++連結檢查 LinkChecker
+
++自動重啟 nodemon
+
+---
++ 網頁測試 Ｍocha
 
 這邊使用dev是因為真正執行時並不需要，所以掛在開發環境下減少依賴數量
 因為我們可能會在瀏覽器中執行mocha所以我們需要今mocha資源放入公共資料夾，讓他可以被傳到用戶端
@@ -113,14 +127,58 @@ app.get('/about', function(req,res){
 });
 ```
 
+接著就可以連接about?test=1來測試
 
-+跨頁測試 Zombie.js
 
-+邏輯測試
++ 跨頁測試 Zombie.js
 
-+Lint JSHint
+首先我們先新增一個旅遊view hood-river tour
+以及一個報價view request group rate
 
-+連結檢查 LinkChecker
+```
+bash-3.2$ touch views/hood-river.handlebars views/request-group-rate.handlebars
+```
+接下來我們把相對的路由建立起來
+在meadowlark.js中使用get方法加入
 
-+自動重啟 nodemon
+```
+app.get('/tours/hood-river', function(req, res){
+	res.render('hood-river');
+});
+
+app.get('/tours/request-group-rate', function(req, res){
+	res.render('request-group-rate');
+});
+```
+做好這些之後就可以打開你的瀏覽器跑道hood-river去
+然後再點下request-group-rate 來確認表單有沒有成功載入
+＊＊＊ 是不是很麻煩 ＊＊＊
+我們需要的是一種稱為headless瀏覽器的東西
+什麼意思呢？代表我們只需要有訪問這個行為就好，
+不用真的去刷新頁面在螢幕上顯示
+為了達到這個需求我們有以下套件可以使用：
+1. Selenium
+2. PhantomJS
+3. Zombie
+這邊我們使用Zombie來做測試
+---
+首先先安裝zombie
+並建立一個新的資料夾以及測試程式碼
+```
+一樣使用npm安裝 加上參數保存在packge裡 以及加上測試環境區別
+npm install --save-dev zombie
+mkdir
+```
+
+
+
+
++ 邏輯測試
+
++ Lint JSHint
+
++ 連結檢查 LinkChecker
+
++ 自動重啟 nodemon
+
 nodemon meadowlark.js
