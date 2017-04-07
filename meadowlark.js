@@ -38,7 +38,10 @@ app.get('/about', function(req,res){
 		fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];
 	res.render('about', { fortune: randomFortune });
 	*/
-	res.render('about',{fortune:fortune.getFortune()});
+	res.render('about',{
+		fortune:fortune.getFortune(),
+		pageTestScript:'./public/qa/test-about.js'
+	});
 });
 
 // 404 catch-all handler (middleware)

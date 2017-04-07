@@ -1,11 +1,27 @@
+
+#前言
+這是為了熟悉開發所做的練習，以一個隨機抽字串的幸運餅乾小程式為基礎來練習
+
 # 準備
-安裝完之後將前端引擎換掉並將餅乾隨機拉出來模組化
-``` npm install --save express3-handlebars view engine
+```
+express meadowwlark
+
+安裝完之後將前端引擎換掉
+npm install --save express3-handlebars view engine
+```
+
+ 建立view，為了方便及節省資源，我們將view切成兩部分
+ 主要的view不變,其他的隨著不同路徑改變
+
+ 在主程式建立抽餅乾的function
+
  bulid main handlebars
  bulid sub handlebars
- turn fortunecookies to modules
+ 
+ 接著把餅乾給抽出來模組化，讓架構更簡潔明瞭
+ 
 
-```
+
 ---
 複習git
 ```
@@ -69,6 +85,33 @@ suite('Global Tests', function(){
 });
 
 ```
+---
+＃ 建立專用的網頁測試
+假設我們想測試一個contact連結是否會在about上，
+我們可以建立一個檔案tests-about.js
+```
+touch public/qa/tests-about.js
+
+suite('"About" Page Tests', function() {
+    test('page should contain link to contact page', function() {
+        assert($('a[herf="/contact"]').length);
+    });
+});
+
+```
+接著我們要更改about的router來指定測試
+```
+app.get('/about', function(req,res){
+	/*var randomFortune = 
+		fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];
+	res.render('about', { fortune: randomFortune });
+	*/
+	res.render('about',{
+		fortune:fortune.getFortune(),
+		pageTestScript:'./public/qa/test-about.js'
+	});
+});
+```
 
 
 +跨頁測試 Zombie.js
@@ -80,3 +123,4 @@ suite('Global Tests', function(){
 +連結檢查 LinkChecker
 
 +自動重啟 nodemon
+nodemon meadowlark.js
