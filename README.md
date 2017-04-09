@@ -274,8 +274,67 @@ bash-3.2$ mocha -u tdd -R spec qa/tests-unit.js
 
 + Lint JSHint
 
+裝vscode的時候內建有套件 可以幫助檢查一些淺在錯誤
+
 + 連結檢查 LinkChecker
+
+npm 上有許多套件可以使用
+
 
 + 自動重啟 nodemon
 
 nodemon meadowlark.js
+---
+＃ Grunt
+
+要做到完整的ＱＡ需要許多的套件，每個套件又有不同指令非常麻煩
+因此我們使用grunt來幫我們自動完成
+```
+npm install -g grunt-cli
+npm install --save-dev grunt
+npm install --save-dev grunt-cafe-mocha grunt-contrib-jshint grunt-exec
+```
+
+```
+	// use foreach to load plugins
+	[
+		'grunt-cafe-mocha',
+		'grunt-contrib-jshint',
+		'grunt-exec',
+	].forEach(function(task){
+		grunt.loadNpmTasks(task);
+	});
+
+```
+
+```
+	// configure plugins
+	grunt.initConfig({
+		cafemocha: {
+			all: { src: 'qa/tests-*.js', options: { ui: 'tdd' }, }
+		},
+		jshint: {
+
+			app: ['meadowlark.js', 'public/js/**/*.js', 'lib/**/*.js'],
+			qa: ['Gruntfile.js', 'public/qa/**/*.js', 'qa/**/*.js'],
+		},
+		exec: {
+			linkchecker: { cmd: 'linkchecker http://localhost:3000' }
+		},
+	});	
+```
+註冊任務
+```
+grunt.registerTask('default', ['cafemocha','jshint','exec']);
+```
+輸入grunt來運行
+```
+grunt 
+```
+可以看見套件執行的測試結果，讚！
+---
+待補充：
+# 持續整合 ＣＩ
+
+# Travis CI 
+ 
