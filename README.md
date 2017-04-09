@@ -332,9 +332,9 @@ grunt.registerTask('default', ['cafemocha','jshint','exec']);
 grunt 
 ```
 可以看見套件執行的測試結果，讚！
----
+
 待補充：
 # 持續整合 ＣＩ
 
-# Travis CI 
++ Travis CI 
  
