@@ -1,8 +1,8 @@
 var fortune = require('../lib/fortune');
-var except = require('chai').except;
+var expect = require('../public/vendor/chai').expect;
 
 suite('Fortune cookie tests', function(){
     test('getFortune() shuld return a fortune', function(){
-        expcet(typeof fortune.getFortune() === 'string');
+        expect(typeof fortune.getFortune() === 'string');
     });
 });

@@ -235,6 +235,43 @@ mocha -u tdd -R spec qa/tests-crosspage.js 2>/dev/null
 
 + 邏輯測試
 
+這邊我們一樣使用mocha來做邏輯測試
+
+因為我們只有一個元件所以這邊做單元測試先建立檔案
+
+```
+bash-3.2$ touch qa/tests-unit.js
+```
+```
+var fortune = require('../lib/fortune');
+var expect = require('../public/vendor/chai').expect;
+
+suite('Fortune cookie tests', function(){
+    test('getFortune() shuld return a fortune', function(){
+        expect(typeof fortune.getFortune() === 'string');
+    });
+});
+
+/*
+// vendor/chai.js
+var expect = require('./chai/interface/expect');
+exports.use(expect);
+*/
+
+```
+
+
+```
+bash-3.2$ mocha -u tdd -R spec qa/tests-unit.js
+
+
+  Fortune cookie tests
+    ✓ getFortune() shuld return a fortune
+
+
+  1 passing (9ms)
+```
+
 + Lint JSHint
 
 + 連結檢查 LinkChecker
