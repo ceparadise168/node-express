@@ -1,23 +1,3 @@
-Index
-===
-
-+ [QA](https://github.com/ceparadise168/node-express/blob/master/note/QA.md)
-
-+ Response&Request
-
-+ Template
-
-+ Form
-
-+ cookie&session
-
-+ midleware
-
-+ sent email
-
----
-
-
 
 #前言
 這是為了熟悉開發所做的練習，以一個隨機抽字串的幸運餅乾小程式為基礎來練習
@@ -357,10 +337,3 @@ grunt
 # 持續整合 ＣＩ
 
 + Travis CI 
-
-
-
-
-
-
- 
